@@ -1,7 +1,5 @@
 package com.company;
 
-import java.util.Map;
-
 public abstract class Player {
     private String name;
     private Map map;
