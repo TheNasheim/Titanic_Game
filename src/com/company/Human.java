@@ -76,9 +76,11 @@ public class Human extends Player {
         }
 
         // DEBUG
+        /*
         for (Position position : positions) {
             System.out.println("X:" + position.getX() + " Y:" + position.getY());
         }
+         */
 
         return positions;
     }
