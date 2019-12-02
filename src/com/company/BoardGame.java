@@ -29,10 +29,11 @@ public class BoardGame {
             else if (shipCollide(position)) {
                 fits = false;
             } else {
-                ships.add(ship);
                 fits = true;
             }
         }
+        if(fits)
+            ships.add(ship);
         return fits;
     }
 
