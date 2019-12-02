@@ -9,15 +9,10 @@ public abstract class Player {
         this.map = map;
     }
 
-    public void placeShips() {
+    public abstract void placeShips();
 
-    }
+    public abstract void ShowCoordinates();
 
-    public void ShowCoordinates() {
-    }
-
-    public void shoot() {
-
-    }
+    public abstract void shoot();
 }
 
