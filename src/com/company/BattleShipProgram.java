@@ -10,10 +10,10 @@ public class BattleShipProgram {
 
 
     public BattleShipProgram(){
-
+        mainMenuSelection();
     }
 
-    public void mainMenuSelection(int choices){
+    public void mainMenuSelection(){
 
         do {
             System.out.println("Choose Opponent");
@@ -21,7 +21,7 @@ public class BattleShipProgram {
             System.out.println("Choose 2: Player vs Computer [Easy]");
             System.out.println("Choose 3: Player vs Computer [Medium]");
             System.out.println("Choose 0: To exit");
-            choices = input.nextInt();
+            int choices = input.nextInt();
             switch(choices) {
                 case 1:
                     System.out.println("Good you choose to play with another Player");
