@@ -14,5 +14,9 @@ public abstract class Player {
     public abstract void ShowCoordinates();
 
     public abstract void shoot();
+
+    public BoardGame getMap() {
+        return map;
+    }
 }
 
