@@ -90,6 +90,7 @@ public class Human extends Player {
             System.out.println("Place submarine...");
             Submarine submarine = new Submarine(new ArrayList<Position>(Arrays.asList(getCoordinates(3))));
             getMap().addShip(submarine);
+            break;
         } while(true);
 
 
