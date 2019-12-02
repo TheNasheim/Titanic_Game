@@ -6,8 +6,7 @@ import java.util.Arrays;
 public class BoardGame {
 
     private SquareState[][] board;
-    //private ArrayList<Ship> ships;
-
+    private ArrayList<Ship> ships;
 
     // This constructor needs two int values to build up a new boardgame with the desired size.
     public BoardGame(int x, int y){
@@ -17,12 +16,28 @@ public class BoardGame {
         }
     }
 
-
-    public void addShip(){
-
+    // Adding a ship to ships array.
+    public void addShip(Ship ship){
+        ships.add(ship);
     }
 
-    
+    // This function is is to fill the arraylist[][] board HIT or MISS from the ships arraylist.
+    public boolean shotAtPosition(Position position) {
+        if(board[position.getX()][position.getY()] == SquareState.NONE) {
+            for (Ship ship : ships) {
+                if (ship.hit(position)) {
+                    board[position.getX()][position.getY()] = SquareState.HIT;
+                } else {
+                    board[position.getX()][position.getY()] = SquareState.MISS;
+                }
+            }
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
 
     //region Render()
     // This Function renders out the Board with hit miss and empty to console.
