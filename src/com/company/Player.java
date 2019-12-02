@@ -2,9 +2,9 @@ package com.company;
 
 public abstract class Player {
     private String name;
-    private Map map;
+    private BoardGame map;
 
-    public Player(String name, Map map) {
+    public Player(String name, BoardGame map) {
         this.name = name;
         this.map = map;
     }
