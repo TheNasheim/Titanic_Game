@@ -91,8 +91,12 @@ public class Human extends Player {
         do {
             System.out.println("Place submarine...");
             Submarine submarine = new Submarine(new ArrayList<Position>(Arrays.asList(getCoordinates(3))));
-            getMap().addShip(submarine);
-            break;
+            if(getMap().addShip(submarine)) {
+                break; // ship was added successfully
+            }
+            else {
+                System.out.println("ERROR: Can't place ship there. Try again!");
+            }
         } while(true);
 
 
