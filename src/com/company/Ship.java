@@ -25,6 +25,11 @@ public abstract class Ship {
         }
         return false;
     }
+
+    public ArrayList<Position> getPositions() {
+        return positions;
+    }
+
     public abstract void wasHit();                    // metod som implementeras av underklasserna
 }
 
