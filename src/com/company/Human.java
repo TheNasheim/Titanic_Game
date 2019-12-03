@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Human extends Player {
+    private BoardGame boardGame;
 
     public Human(String name, BoardGame map) {
         super(name, map);
@@ -128,7 +129,13 @@ public class Human extends Player {
     }
 
     @Override
-    public void shoot() {
-
+    public Position shoot() {
+        Scanner input = new Scanner(System.in);
+        // get players name . get Nap . boolean shotAtPosition(Position position[new toX,toY])
+        int toX, toY;
+        System.out.println("Enter coordinate X & Y to shoot at");
+        toX = input.nextInt();
+        toY = input.nextInt();
+        return new Position(toX,toY);
     }
 }
