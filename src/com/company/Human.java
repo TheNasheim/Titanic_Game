@@ -115,11 +115,6 @@ public class Human extends Player {
     }
 
     @Override
-    public void ShowCoordinates() {
-
-    }
-
-    @Override
     public Position shoot() {
         Scanner input = new Scanner(System.in);
         // get players name . get Nap . boolean shotAtPosition(Position position[new toX,toY])
