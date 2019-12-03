@@ -1,11 +1,14 @@
 package com.company;
 
+
+
 import java.util.Random;
 
 public class Computer extends Player {
+    private Position lastPosition;
 
-    public Computer(String name,BoardGame map){
-        super(name,map);
+    public Computer(String name, int id, BoardGame map){
+        super(name, id, map);
     }
 
 
@@ -19,24 +22,34 @@ public class Computer extends Player {
         return 0;
     }
 
-    @Override
-    public void ShowCoordinates() {
 
-    }
 
     @Override
     public Position shoot() {
-        Random randomCoordinate  = new Random();
-        int toX, toY;
+        Position position = new Position(1,1);
+        //Hard *Crasy
+        if(getName().equals("GLaDOS")) {
 
-        toX = randomCoordinate.nextInt(10);
-        toY = randomCoordinate.nextInt(10);
+        }
+        //Half smart?
+        else if(getName().equals("medium")){
 
-        return new Position(toX+1,toY+1);
+        }
+        //dumb
+        else {
+
+        }
+
+        return position;
     }
+
+
+
+
 
     @Override
     public int getShipsLeft() {
         return 0;
     }
+
 }
