@@ -115,4 +115,7 @@ public class BoardGame {
 
     //endregion
 
+    public int getShipsLeft(){
+        return ships.size();
+    }
 }
