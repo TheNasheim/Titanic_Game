@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Random;
+
 public class Computer extends Player {
 
     public Computer(String name,BoardGame map){
@@ -19,6 +21,12 @@ public class Computer extends Player {
 
     @Override
     public Position shoot() {
-        return null;
+        Random randomCoordinate  = new Random();
+        int toX, toY;
+
+        toX = randomCoordinate.nextInt(10);
+        toY = randomCoordinate.nextInt(10);
+
+        return new Position(toX+1,toY+1);
     }
 }
