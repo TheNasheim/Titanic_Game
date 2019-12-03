@@ -18,4 +18,9 @@ public class Destroyer extends Ship {
     public void wasHit() {
 
     }
+
+    @Override
+    public String toString() {
+        return "Destroyer";
+    }
 }
