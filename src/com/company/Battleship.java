@@ -19,4 +19,9 @@ public class Battleship extends Ship {
     public void wasHit() {
 
     }
+
+    @Override
+    public String toString() {
+        return "Battleship";
+    }
 }
