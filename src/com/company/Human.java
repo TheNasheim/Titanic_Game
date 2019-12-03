@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Human extends Player {
+    private BoardGame boardGame;
 
     public Human(String name, BoardGame map) {
         super(name, map);
@@ -18,17 +19,17 @@ public class Human extends Player {
 
         // horizontal or vertical
         while(true) {
-            System.out.print("Horizontal or vertical: ");
+            System.out.print("[h]orizontal or [v]ertical: ");
             String alignment = scanner.nextLine().toLowerCase();
 
-            if(alignment.equals("vertical")) {
+            if(alignment.equals("v") || alignment.equals("vertical")) {
                 horizontal = false;
             }
-            else if(alignment.equals("horizontal")) {
+            else if(alignment.equals("h") || alignment.equals("horizontal")) {
                 horizontal = true;
             }
             else {
-                System.out.println("ERROR: You have to enter \"horizontal\" or \"vertical\". Try again!");
+                System.out.println("ERROR: You have to enter [h]orizontal or [v]ertical. Try again!");
                 continue;
             }
 
@@ -128,7 +129,13 @@ public class Human extends Player {
     }
 
     @Override
-    public void shoot() {
-
+    public Position shoot() {
+        Scanner input = new Scanner(System.in);
+        // get players name . get Nap . boolean shotAtPosition(Position position[new toX,toY])
+        int toX, toY;
+        System.out.println("Enter coordinate X & Y to shoot at");
+        toX = input.nextInt();
+        toY = input.nextInt();
+        return new Position(toX,toY);
     }
 }
