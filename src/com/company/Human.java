@@ -127,6 +127,8 @@ public class Human extends Player {
         System.out.println("Enter coordinate X & Y to shoot at");
         toX = input.nextInt();
         toY = input.nextInt();
+        toX--;
+        toY--;
         return new Position(toX,toY);
     }
 
