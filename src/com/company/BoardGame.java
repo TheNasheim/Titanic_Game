@@ -10,16 +10,50 @@ public class BoardGame {
 
     // This constructor needs two int values to build up a new boardgame with the desired size.
     public BoardGame(int x, int y){
+        ships = new ArrayList<>();
         board = new SquareState[x][y];
-        for (int row = 0; row < board.length; row++) {
-            Arrays.fill(board[row], SquareState.NONE);
+        for (SquareState[] squareStates : board) {
+            Arrays.fill(squareStates, SquareState.NONE);
         }
     }
 
+    //region addShip()
     // Adding a ship to ships array.
-    public void addShip(Ship ship){
-        ships.add(ship);
+    // This will return a boolean if has collided with another ship
+    // or if it is outside the game area
+    public boolean addShip(Ship ship){
+        boolean fits = true;
+        for(Position position : ship.getPositions()) {
+            if (position.getX() > board[0].length || position.getY() > board[1].length)
+                fits =  false;
+            else if (shipCollide(position)) {
+                fits = false;
+            } else {
+                fits = true;
+            }
+        }
+        if(fits)
+            ships.add(ship);
+        return fits;
     }
+
+    // This will check all the other ships that the positions do not collide.
+    // else it will return a False.
+    private boolean shipCollide(Position position){
+        boolean collide = false;
+        if(ships.size() != 0) {
+            for (Ship ship : ships) {
+                ArrayList<Position> positions = ship.getPositions();
+                for(Position pos : positions){
+                    if (position.getX() == pos.getX() && position.getY() == pos.getY()) {
+                        collide = true;
+                    }
+                }
+            }
+        }
+        return collide;
+    }
+    //endregion
 
     // This function is is to fill the arraylist[][] board HIT or MISS from the ships arraylist.
     public boolean shotAtPosition(Position position) {
