@@ -22,4 +22,9 @@ public class Carrier extends Ship {
     public void wasHit() {
 
     }
+
+    @Override
+    public String toString() {
+        return "Carrier";
+    }
 }
