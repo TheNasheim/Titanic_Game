@@ -13,10 +13,13 @@ public abstract class Player {
 
     public abstract void ShowCoordinates();
 
-    public abstract void shoot();
+    public abstract Position shoot();
 
     public BoardGame getMap() {
         return map;
+    }
+    public void displayMap(){
+        map.render();
     }
 }
 
