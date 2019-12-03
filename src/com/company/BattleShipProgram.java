@@ -33,10 +33,10 @@ public class BattleShipProgram {
                     playGame();
                     break;
                 case 2:
-                    System.out.println("Player vs Computer [Easy]");
+                    System.out.println("Player vs Computer [Dumb]");
                     players = new Player[2];
-                    players[0] = new Human("Player1", 0, new BoardGame(10, 10));
-                    players[1] = new Computer("Player2", 1, new BoardGame(10, 10));
+                    players[0] = new Human("Player1", 0,new BoardGame(10, 10));
+                    players[1] = new Computer("Mr.Potato", 1,new BoardGame(10, 10));
                     playGame();
                     break;
                 case 3:
@@ -44,6 +44,13 @@ public class BattleShipProgram {
                     players = new Player[2];
                     players[0] = new Human("Player1", 0, new BoardGame(10, 10));
                     players[1] = new Computer("Player2", 1, new BoardGame(10, 10));
+                    playGame();
+                    break;
+                case 4:
+                    System.out.println("Player vs Computer [Crasy]");
+                    players = new Player[2];
+                    players[0] = new Human("Player1",0, new BoardGame(10, 10));
+                    players[1] = new Computer("GLaDOS", 1, new BoardGame(10, 10));
                     playGame();
                     break;
                 case 0:
@@ -73,10 +80,11 @@ public class BattleShipProgram {
         }
         boolean gameRunning = true;
         while (gameRunning) {
-            for (Player player : players) {
-                int oponent = player.selectOponentPlayer();
+            for(int currentPlayerIndex  = 0; currentPlayerIndex < players.length; currentPlayerIndex++){
+
+                int oponent = players[currentPlayerIndex].selectOponentPlayer();
                 players[oponent].displayMap();
-                Position position = player.shoot();
+                Position position = players[currentPlayerIndex].shoot();
                 boolean hit = players[oponent].shotAtPosition(position);
                 if (hit) {
                     int shipsLeft = players[oponent].getShipsLeft();

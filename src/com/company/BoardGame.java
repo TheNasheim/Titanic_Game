@@ -11,7 +11,7 @@ public class BoardGame {
     // This constructor needs two int values to build up a new boardgame with the desired size.
     public BoardGame(int x, int y){
         ships = new ArrayList<>();
-        board = new SquareState[x][y];
+        board = new SquareState[y][x];
         for (SquareState[] squareStates : board) {
             Arrays.fill(squareStates, SquareState.NONE);
         }
@@ -24,12 +24,17 @@ public class BoardGame {
     public boolean addShip(Ship ship){
         boolean fits = true;
         for(Position position : ship.getPositions()) {
-            if (position.getX() >= board[0].length || position.getY() >= board.length)
+            if (position.getX() >= board[0].length || position.getY() >= board.length) {
+                fits = false;
+                break;
+            }
+            else if (position.getX() < 0 || position.getY() < 0){
                 fits =  false;
-            else if (position.getX() < 0 || position.getY() < 0)
-                fits =  false;
+            break;
+            }
             else if (shipCollide(position)) {
                 fits = false;
+                break;
             } else {
                 fits = true;
             }
@@ -115,6 +120,7 @@ public class BoardGame {
 
     //endregion
 
+    // this will return the amount of ships player has left.
     public int getShipsLeft(){
         return ships.size();
     }
