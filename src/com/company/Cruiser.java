@@ -19,4 +19,9 @@ public class Cruiser extends Ship {
     public void wasHit() {
 
     }
+
+    @Override
+    public String toString() {
+        return "Cruiser";
+    }
 }

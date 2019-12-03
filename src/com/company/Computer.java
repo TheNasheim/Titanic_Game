@@ -15,6 +15,11 @@ public class Computer extends Player {
     }
 
     @Override
+    public int selectOponentPlayer() {
+        return 0;
+    }
+
+    @Override
     public void ShowCoordinates() {
 
     }
@@ -28,5 +33,10 @@ public class Computer extends Player {
         toY = randomCoordinate.nextInt(10);
 
         return new Position(toX+1,toY+1);
+    }
+
+    @Override
+    public int getShipsLeft() {
+        return 0;
     }
 }

@@ -25,4 +25,9 @@ public class Submarine extends Ship {
         //change behavior that exist in the superclass 
 
     }
+
+    @Override
+    public String toString() {
+        return "Submarine";
+    }
 }

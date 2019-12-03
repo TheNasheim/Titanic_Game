@@ -95,6 +95,11 @@ public class Human extends Player {
     }
 
     @Override
+    public int selectOponentPlayer() {
+        return 0;
+    }
+
+    @Override
     public void ShowCoordinates() {
 
     }
@@ -108,5 +113,10 @@ public class Human extends Player {
         toX = input.nextInt();
         toY = input.nextInt();
         return new Position(toX,toY);
+    }
+
+    @Override
+    public int getShipsLeft() {
+        return 0;
     }
 }
