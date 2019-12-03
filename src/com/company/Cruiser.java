@@ -9,6 +9,11 @@ public class Cruiser extends Ship {
     }
 
     @Override
+    public int getSize() {
+        return 4;
+    }
+
+    @Override
     public void wasHit() {
 
     }

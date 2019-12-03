@@ -12,6 +12,11 @@ public class Carrier extends Ship {
     }
 
     @Override
+    public int getSize() {
+        return 3;
+    }
+
+    @Override
     public void wasHit() {
 
     }
