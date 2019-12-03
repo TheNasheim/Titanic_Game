@@ -39,5 +39,6 @@ public abstract class Player {
                 new Carrier()
         };
     }
+    public abstract int getShipsLeft();
 }
 
