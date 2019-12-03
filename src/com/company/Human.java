@@ -7,8 +7,8 @@ import java.util.Scanner;
 public class Human extends Player {
     private BoardGame boardGame;
 
-    public Human(String name, BoardGame map) {
-        super(name, map);
+    public Human(String name, int id, BoardGame map) {
+        super(name, id, map);
     }
 
     private ArrayList<Position> getCoordinates(int shipSize) {
