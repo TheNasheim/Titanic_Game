@@ -96,7 +96,22 @@ public class Human extends Player {
 
     @Override
     public int selectOponentPlayer() {
-        return 0;
+        Scanner scanner = new Scanner(System.in);
+        int playerIndex;
+
+        do {
+            System.out.print("Enter index number of player to attack: ");
+            try {
+                 playerIndex = Integer.parseInt(scanner.nextLine());
+            }
+            catch(NumberFormatException e) {
+                System.out.println("ERROR: Must be an integer. Try again!");
+                continue;
+            }
+            break;
+        } while(true);
+
+        return playerIndex;
     }
 
     @Override
@@ -117,6 +132,6 @@ public class Human extends Player {
 
     @Override
     public int getShipsLeft() {
-        return 0;
+        return getMap().getShipsLeft();
     }
 }
