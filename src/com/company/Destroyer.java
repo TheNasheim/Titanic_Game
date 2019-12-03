@@ -7,6 +7,8 @@ public class Destroyer extends Ship {
         super(positions);
     }
 
+    public Destroyer() {}
+
     @Override
     public int getSize() {
         return 2;

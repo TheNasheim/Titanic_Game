@@ -13,6 +13,8 @@ public class Submarine extends Ship {
         // send up ArrayList to super
     }
 
+    public Submarine() {}
+
     @Override
     public int getSize() {
         return 3;
