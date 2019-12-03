@@ -18,7 +18,7 @@ public class Human extends Player {
 
         // horizontal or vertical
         while(true) {
-            System.out.print("[h]]orizontal or [v]ertical: ");
+            System.out.print("[h]orizontal or [v]ertical: ");
             String alignment = scanner.nextLine().toLowerCase();
 
             if(alignment.equals("v") || alignment.equals("vertical")) {
