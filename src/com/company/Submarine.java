@@ -14,6 +14,11 @@ public class Submarine extends Ship {
     }
 
     @Override
+    public int getSize() {
+        return 3;
+    }
+
+    @Override
     public void wasHit() {
         //change behavior that exist in the superclass 
 

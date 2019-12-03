@@ -9,6 +9,11 @@ public class Battleship extends Ship {
     }
 
     @Override
+    public int getSize() {
+        return 5;
+    }
+
+    @Override
     public void wasHit() {
 
     }

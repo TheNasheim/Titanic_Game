@@ -8,6 +8,11 @@ public class Destroyer extends Ship {
     }
 
     @Override
+    public int getSize() {
+        return 2;
+    }
+
+    @Override
     public void wasHit() {
 
     }
