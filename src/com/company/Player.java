@@ -18,5 +18,8 @@ public abstract class Player {
     public BoardGame getMap() {
         return map;
     }
+    public void displayMap(){
+        map.render();
+    }
 }
 
