@@ -18,17 +18,17 @@ public class Human extends Player {
 
         // horizontal or vertical
         while(true) {
-            System.out.print("Horizontal or vertical: ");
+            System.out.print("[h]]orizontal or [v]ertical: ");
             String alignment = scanner.nextLine().toLowerCase();
 
-            if(alignment.equals("vertical")) {
+            if(alignment.equals("v") || alignment.equals("vertical")) {
                 horizontal = false;
             }
-            else if(alignment.equals("horizontal")) {
+            else if(alignment.equals("h") || alignment.equals("horizontal")) {
                 horizontal = true;
             }
             else {
-                System.out.println("ERROR: You have to enter \"horizontal\" or \"vertical\". Try again!");
+                System.out.println("ERROR: You have to enter [h]orizontal or [v]ertical. Try again!");
                 continue;
             }
 
