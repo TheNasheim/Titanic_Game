@@ -8,8 +8,20 @@ public class Battleship extends Ship {
         super(positions);
     }
 
+    public Battleship(){}
+
+    @Override
+    public int getSize() {
+        return 5;
+    }
+
     @Override
     public void wasHit() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "Battleship";
     }
 }

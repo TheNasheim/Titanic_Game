@@ -13,6 +13,16 @@ public abstract class Ship {
 
     }
 
+    public Ship() {
+        positions = new ArrayList<Position>();
+    }
+
+    public abstract int getSize();
+
+    public void setPositions(ArrayList<Position> positions) {
+        this.positions = positions;
+    }
+
     public boolean hit(Position attackPosition) {        // tar emot ett argument, positionen som spelaren skjutit mot
         for (Position position : positions) {           // ett skepp kan bestå av flera rutor på spelplanen, vi går igenom positionerna i skeppet
             if (attackPosition.getX() == position.getX() && attackPosition.getY() == position.getY()) {

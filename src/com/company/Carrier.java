@@ -11,8 +11,20 @@ public class Carrier extends Ship {
         super(positions);
     }
 
+    public Carrier() {}
+
+    @Override
+    public int getSize() {
+        return 3;
+    }
+
     @Override
     public void wasHit() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "Carrier";
     }
 }
