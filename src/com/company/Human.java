@@ -5,12 +5,13 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Human extends Player {
+    private BoardGame boardGame;
 
     public Human(String name, BoardGame map) {
         super(name, map);
     }
 
-    private Position[] getCoordinates(int shipSize) {
+    private ArrayList<Position> getCoordinates(int shipSize) {
         Scanner scanner = new Scanner(System.in);
         int x;
         int y;
@@ -18,17 +19,17 @@ public class Human extends Player {
 
         // horizontal or vertical
         while(true) {
-            System.out.print("Horizontal or vertical: ");
+            System.out.print("[h]orizontal or [v]ertical: ");
             String alignment = scanner.nextLine().toLowerCase();
 
-            if(alignment.equals("vertical")) {
+            if(alignment.equals("v") || alignment.equals("vertical")) {
                 horizontal = false;
             }
-            else if(alignment.equals("horizontal")) {
+            else if(alignment.equals("h") || alignment.equals("horizontal")) {
                 horizontal = true;
             }
             else {
-                System.out.println("ERROR: You have to enter \"horizontal\" or \"vertical\". Try again!");
+                System.out.println("ERROR: You have to enter [h]orizontal or [v]ertical. Try again!");
                 continue;
             }
 
@@ -64,62 +65,38 @@ public class Human extends Player {
         x--; // make 1-based index into 0-based
         y--; // make 1-based index into 0-based
 
-        Position[] positions = new Position[shipSize];
+        ArrayList<Position> positions = new ArrayList<Position>();
 
         for (int i = 0; i < shipSize; i++) {
             if(horizontal) {
-                positions[i] = new Position(x + i, y);
+                positions.add(new Position(x + i, y));
             }
             else { // vertical
-                positions[i] = new Position(x, y + i);
+                positions.add(new Position(x, y + i));
             }
         }
-
-        // DEBUG
-        /*
-        for (Position position : positions) {
-            System.out.println("X:" + position.getX() + " Y:" + position.getY());
-        }
-         */
 
         return positions;
     }
 
     @Override
     public void placeShips() {
-        // place submarine
-        do {
-            System.out.println("Place submarine...");
-            Submarine submarine = new Submarine(new ArrayList<Position>(Arrays.asList(getCoordinates(3))));
-            if(getMap().addShip(submarine)) {
-                break; // ship was added successfully
-            }
-            else {
-                System.out.println("ERROR: Can't place ship there. Try again!");
-            }
-        } while(true);
+        for (Ship ship : getStartingShips()) {
+            do {
+                System.out.println("Place" + ship + "...");
+                ship.setPositions(getCoordinates(ship.getSize()));
+                if (getMap().addShip(ship)) {
+                    break; // ship was added successfully
+                } else {
+                    System.out.println("ERROR: Can't place ship there. Try again!");
+                }
+            } while(true);
+        }
+    }
 
-
-        /*
-        // destroyer
-        System.out.println("Place destroyer...");
-        Destroyer destroyer = new Destroyer(new ArrayList<Position>(Arrays.asList(getCoordinates(2))));
-
-        // cruiser
-        System.out.println("Place cruiser...");
-        Cruiser cruiser = new Cruiser(new ArrayList<Position>(Arrays.asList(getCoordinates(4))));
-
-        // battleship
-        System.out.println("Place battleship...");
-        Battleship battleship = new Battleship(new ArrayList<Position>(Arrays.asList(getCoordinates(5))));
-
-        // carrier (x2)
-        System.out.println("Place carrier...");
-        Carrier carrier = new Carrier(new ArrayList<Position>(Arrays.asList(getCoordinates(3))));
-
-        System.out.println("Place carrier...");
-        Carrier carrier2 = new Carrier(new ArrayList<Position>(Arrays.asList(getCoordinates(3))));
-         */
+    @Override
+    public int selectOponentPlayer() {
+        return 0;
     }
 
     @Override
@@ -128,7 +105,18 @@ public class Human extends Player {
     }
 
     @Override
-    public void shoot() {
+    public Position shoot() {
+        Scanner input = new Scanner(System.in);
+        // get players name . get Nap . boolean shotAtPosition(Position position[new toX,toY])
+        int toX, toY;
+        System.out.println("Enter coordinate X & Y to shoot at");
+        toX = input.nextInt();
+        toY = input.nextInt();
+        return new Position(toX,toY);
+    }
 
+    @Override
+    public int getShipsLeft() {
+        return 0;
     }
 }

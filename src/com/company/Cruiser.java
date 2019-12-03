@@ -8,8 +8,20 @@ public class Cruiser extends Ship {
         super(positions);
     }
 
+    public Cruiser() {}
+
+    @Override
+    public int getSize() {
+        return 4;
+    }
+
     @Override
     public void wasHit() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "Cruiser";
     }
 }

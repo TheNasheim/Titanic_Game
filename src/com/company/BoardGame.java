@@ -24,7 +24,9 @@ public class BoardGame {
     public boolean addShip(Ship ship){
         boolean fits = true;
         for(Position position : ship.getPositions()) {
-            if (position.getX() > board[0].length || position.getY() > board[1].length)
+            if (position.getX() >= board[0].length || position.getY() >= board.length)
+                fits =  false;
+            if (position.getX() < 0 || position.getY() < 0)
                 fits =  false;
             else if (shipCollide(position)) {
                 fits = false;
@@ -57,12 +59,12 @@ public class BoardGame {
 
     // This function is is to fill the arraylist[][] board HIT or MISS from the ships arraylist.
     public boolean shotAtPosition(Position position) {
-        if(board[position.getX()][position.getY()] == SquareState.NONE) {
+        if(board[position.getY()][position.getX()] == SquareState.NONE) {
             for (Ship ship : ships) {
                 if (ship.hit(position)) {
-                    board[position.getX()][position.getY()] = SquareState.HIT;
+                    board[position.getY()][position.getX()] = SquareState.HIT;
                 } else {
-                    board[position.getX()][position.getY()] = SquareState.MISS;
+                    board[position.getY()][position.getX()] = SquareState.MISS;
                 }
             }
             return true;
@@ -113,4 +115,7 @@ public class BoardGame {
 
     //endregion
 
+    public int getShipsLeft(){
+        return ships.size();
+    }
 }
