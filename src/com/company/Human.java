@@ -11,7 +11,7 @@ public class Human extends Player {
         super(name, map);
     }
 
-    private Position[] getCoordinates(int shipSize) {
+    private ArrayList<Position> getCoordinates(int shipSize) {
         Scanner scanner = new Scanner(System.in);
         int x;
         int y;
@@ -65,23 +65,16 @@ public class Human extends Player {
         x--; // make 1-based index into 0-based
         y--; // make 1-based index into 0-based
 
-        Position[] positions = new Position[shipSize];
+        ArrayList<Position> positions = new ArrayList<Position>();
 
         for (int i = 0; i < shipSize; i++) {
             if(horizontal) {
-                positions[i] = new Position(x + i, y);
+                positions.add(new Position(x + i, y));
             }
             else { // vertical
-                positions[i] = new Position(x, y + i);
+                positions.add(new Position(x, y + i));
             }
         }
-
-        // DEBUG
-        /*
-        for (Position position : positions) {
-            System.out.println("X:" + position.getX() + " Y:" + position.getY());
-        }
-         */
 
         return positions;
     }
@@ -91,7 +84,7 @@ public class Human extends Player {
         for (Ship ship : getStartingShips()) {
             do {
                 System.out.println("Place" + ship + "...");
-                ship.setPositions(new ArrayList<Position>(Arrays.asList(getCoordinates(ship.getSize()))));
+                ship.setPositions(getCoordinates(ship.getSize()));
                 if (getMap().addShip(ship)) {
                     break; // ship was added successfully
                 } else {
