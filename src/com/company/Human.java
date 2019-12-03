@@ -83,7 +83,7 @@ public class Human extends Player {
     public void placeShips() {
         for (Ship ship : getStartingShips()) {
             do {
-                System.out.println("Place" + ship + "...");
+                System.out.println("Place " + ship + "...");
                 ship.setPositions(getCoordinates(ship.getSize()));
                 if (getMap().addShip(ship)) {
                     break; // ship was added successfully
