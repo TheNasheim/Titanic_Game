@@ -3,10 +3,12 @@ package com.company;
 public abstract class Player {
     private String name;
     private BoardGame map;
+    private int id;
 
-    public Player(String name, BoardGame map) {
+    public Player(String name, int id, BoardGame map) {
         this.name = name;
         this.map = map;
+        this.id = id;
     }
 
     public abstract void placeShips();
@@ -21,8 +23,16 @@ public abstract class Player {
         return map;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void displayMap() {
         map.render();
+    }
+
+    public int getId() {
+        return id;
     }
 
     public boolean shotAtPosition(Position position) {
