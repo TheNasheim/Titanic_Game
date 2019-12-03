@@ -83,7 +83,7 @@ public class Human extends Player {
     public void placeShips() {
         for (Ship ship : getStartingShips()) {
             do {
-                System.out.println("Place" + ship + "...");
+                System.out.println("Place " + ship + "...");
                 ship.setPositions(getCoordinates(ship.getSize()));
                 if (getMap().addShip(ship)) {
                     break; // ship was added successfully
@@ -96,7 +96,22 @@ public class Human extends Player {
 
     @Override
     public int selectOponentPlayer() {
-        return 0;
+        Scanner scanner = new Scanner(System.in);
+        int playerIndex;
+
+        do {
+            System.out.print("Enter index number of player to attack: ");
+            try {
+                 playerIndex = Integer.parseInt(scanner.nextLine());
+            }
+            catch(NumberFormatException e) {
+                System.out.println("ERROR: Must be an integer. Try again!");
+                continue;
+            }
+            break;
+        } while(true);
+
+        return playerIndex;
     }
 
     @Override
@@ -112,11 +127,13 @@ public class Human extends Player {
         System.out.println("Enter coordinate X & Y to shoot at");
         toX = input.nextInt();
         toY = input.nextInt();
+        toX--;
+        toY--;
         return new Position(toX,toY);
     }
 
     @Override
     public int getShipsLeft() {
-        return 0;
+        return getMap().getShipsLeft();
     }
 }
