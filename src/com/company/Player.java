@@ -7,15 +7,13 @@ public abstract class Player {
 
     public Player(String name, int id, BoardGame map) {
         this.name = name;
-        this.map = map;
         this.id = id;
+        this.map = map;
     }
 
     public abstract void placeShips();
 
     public abstract int selectOponentPlayer();
-
-    public abstract void ShowCoordinates();
 
     public abstract Position shoot();
 
