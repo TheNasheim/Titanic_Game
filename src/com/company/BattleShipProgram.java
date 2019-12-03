@@ -1,12 +1,13 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BattleShipProgram {
 
-    private boolean menuSelection = true;
     private Scanner input = new Scanner(System.in);
     private boolean quit = true;
+    private ArrayList<Player> players;
 
 
     public BattleShipProgram(){
@@ -25,12 +26,18 @@ public class BattleShipProgram {
             switch(choices) {
                 case 1:
                     System.out.println("Good you choose to play with another Player");
+                    players.add(new Human("Player1", new BoardGame(10,10)));
+                    players.add(new Human("Player2", new BoardGame(10,10)));
                     break;
                 case 2:
                     System.out.println("Player vs Computer [Easy]");
+                    players.add(new Human("Player1", new BoardGame(10,10)));
+                    players.add(new Computer("Player2", new BoardGame(10,10)));
                     break;
                 case 3:
                     System.out.println("Player vs Computer [Medium]");
+                    players.add(new Human("Player1", new BoardGame(10,10)));
+                    players.add(new Computer("Player2", new BoardGame(10,10)));
                     break;
                 case 0:
                     quit = false;
