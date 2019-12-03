@@ -31,6 +31,10 @@ public abstract class Player {
         map.render();
     }
 
+    public int getId() {
+        return id;
+    }
+
     public boolean shotAtPosition(Position position) {
         return map.shotAtPosition(position);
     }
