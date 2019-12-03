@@ -88,39 +88,17 @@ public class Human extends Player {
 
     @Override
     public void placeShips() {
-        // place submarine
-        do {
-            System.out.println("Place submarine...");
-            Submarine submarine = new Submarine(new ArrayList<Position>(Arrays.asList(getCoordinates(3))));
-            if(getMap().addShip(submarine)) {
-                break; // ship was added successfully
-            }
-            else {
-                System.out.println("ERROR: Can't place ship there. Try again!");
-            }
-        } while(true);
-
-
-        /*
-        // destroyer
-        System.out.println("Place destroyer...");
-        Destroyer destroyer = new Destroyer(new ArrayList<Position>(Arrays.asList(getCoordinates(2))));
-
-        // cruiser
-        System.out.println("Place cruiser...");
-        Cruiser cruiser = new Cruiser(new ArrayList<Position>(Arrays.asList(getCoordinates(4))));
-
-        // battleship
-        System.out.println("Place battleship...");
-        Battleship battleship = new Battleship(new ArrayList<Position>(Arrays.asList(getCoordinates(5))));
-
-        // carrier (x2)
-        System.out.println("Place carrier...");
-        Carrier carrier = new Carrier(new ArrayList<Position>(Arrays.asList(getCoordinates(3))));
-
-        System.out.println("Place carrier...");
-        Carrier carrier2 = new Carrier(new ArrayList<Position>(Arrays.asList(getCoordinates(3))));
-         */
+        for (Ship ship : getStartingShips()) {
+            do {
+                System.out.println("Place" + ship + "...");
+                ship.setPositions(new ArrayList<Position>(Arrays.asList(getCoordinates(ship.getSize()))));
+                if (getMap().addShip(ship)) {
+                    break; // ship was added successfully
+                } else {
+                    System.out.println("ERROR: Can't place ship there. Try again!");
+                }
+            } while(true);
+        }
     }
 
     @Override
