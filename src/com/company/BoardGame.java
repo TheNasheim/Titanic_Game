@@ -26,7 +26,7 @@ public class BoardGame {
         for(Position position : ship.getPositions()) {
             if (position.getX() >= board[0].length || position.getY() >= board.length)
                 fits =  false;
-            if (position.getX() < 0 || position.getY() < 0)
+            else if (position.getX() < 0 || position.getY() < 0)
                 fits =  false;
             else if (shipCollide(position)) {
                 fits = false;
