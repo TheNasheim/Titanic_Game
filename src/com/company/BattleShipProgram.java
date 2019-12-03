@@ -28,22 +28,22 @@ public class BattleShipProgram {
                 case 1:
                     System.out.println("Good you choose to play with another Player");
                     players = new Player[2];
-                    players[0] = new Human("Player1", new BoardGame(10, 10));
-                    players[1] = new Human("Player2", new BoardGame(10, 10));
+                    players[0] = new Human("Player1", 0, new BoardGame(10, 10));
+                    players[1] = new Human("Player2", 1, new BoardGame(10, 10));
                     playGame();
                     break;
                 case 2:
                     System.out.println("Player vs Computer [Easy]");
                     players = new Player[2];
-                    players[0] = new Human("Player1", new BoardGame(10, 10));
-                    players[1] = new Computer("Player2", new BoardGame(10, 10));
+                    players[0] = new Human("Player1", 0, new BoardGame(10, 10));
+                    players[1] = new Computer("Player2", 1, new BoardGame(10, 10));
                     playGame();
                     break;
                 case 3:
                     System.out.println("Player vs Computer [Medium]");
                     players = new Player[2];
-                    players[0] = new Human("Player1", new BoardGame(10, 10));
-                    players[1] = new Computer("Player2", new BoardGame(10, 10));
+                    players[0] = new Human("Player1", 0, new BoardGame(10, 10));
+                    players[1] = new Computer("Player2", 1, new BoardGame(10, 10));
                     playGame();
                     break;
                 case 0:
