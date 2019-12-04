@@ -2,23 +2,80 @@ package com.company;
 
 
 
-import java.util.Random;
+import java.util.ArrayList;
 
 public class Computer extends Player {
-    private Position lastPosition;
-
+    //private Position lastPosition;
+    int xSize;
+    int ySize;
     public Computer(String name, int id, BoardGame map){
         super(name, id, map);
     }
 
 
+
+
+    //
     @Override
     public void placeShips() {
-
+        for (Ship ship : getStartingShips())
+            do {
+                ship.setPositions(getCoordinates(ship.getSize()));
+            } while (!getMap().addShip(ship));
+        System.out.println(getName() + " has placed out all its ships.");
     }
 
+    //
+    private ArrayList<Position> getCoordinates(int shipSize) {
+        int x;
+        int y;
+        boolean horizontal;
+
+        int alignment = (int) Math.round(Math.random());
+        horizontal = alignment != 0;
+
+        // x-coordinate
+        while (true) {
+            try {
+                x = (int) Math.round(Math.random() * getMap().getXSize());
+            } catch (NumberFormatException e) {
+                continue;
+            }
+            break;
+        }
+
+        // y-coordinate
+        while (true) {
+            try {
+                y = (int)Math.round(Math.random() * getMap().getYSize());
+            } catch (NumberFormatException e) {
+                continue;
+            }
+            break;
+        }
+
+        ArrayList<Position> positions = new ArrayList<Position>();
+        for (int i = 0; i < shipSize; i++) {
+            if (horizontal) {
+                positions.add(new Position(x + i, y));
+            } else { // vertical
+                positions.add(new Position(x, y + i));
+            }
+        }
+
+        return positions;
+    }
+
+
+    // This is just so Mr.Potato can hav a 20% chance to hit his own map by mistake. ;)
     @Override
     public int selectOponentPlayer() {
+        if(getName().equals("Mr.Potato")) {
+            if(Math.random() > 0.8)
+                return 1;
+            else
+                return 0;
+        }
         return 0;
     }
 
@@ -26,20 +83,30 @@ public class Computer extends Player {
 
     @Override
     public Position shoot() {
-        Position position = new Position(1,1);
-        //Hard *Crasy
+
+        Position position = new Position((int)Math.round(Math.random()) * getMap().getXSize(),(int)Math.round(Math.random()) * getMap().getYSize());/*
+        //Hard *Crazy
         if(getName().equals("GLaDOS")) {
+            int x = (int)Math.round(Math.random()) * getMap().getXSize();
+            int y = 0;
+            if (x % 2 == 0)
+                //  start with 0
+
+                System.out.println("The number is even.");
+            else
+                // start with 1
+                System.out.println("The number is odd.");
 
         }
         //Half smart?
-        else if(getName().equals("medium")){
+        else if(getName().equals("H.A.L")){
 
         }
         //dumb
         else {
 
         }
-
+*/
         return position;
     }
 
@@ -49,7 +116,7 @@ public class Computer extends Player {
 
     @Override
     public int getShipsLeft() {
-        return 0;
+        return getMap().getShipsLeft();
     }
 
 }
