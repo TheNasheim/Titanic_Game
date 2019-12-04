@@ -81,7 +81,7 @@ public class BattleShipProgram {
         boolean gameRunning = true;
         while (gameRunning) {
             for(int currentPlayerIndex  = 0; currentPlayerIndex < players.length; currentPlayerIndex++){
-
+                System.out.println(players[currentPlayerIndex] + "'s turn...");
                 int oponent = players[currentPlayerIndex].selectOponentPlayer();
                 players[oponent].displayMap();
                 Position position = players[currentPlayerIndex].shoot();

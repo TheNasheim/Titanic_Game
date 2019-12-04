@@ -19,13 +19,13 @@ public class Human extends Player {
 
         // horizontal or vertical
         while(true) {
-            System.out.print("[h]orizontal or [v]ertical: ");
-            String alignment = scanner.nextLine().toLowerCase();
+            System.out.print("[h]orizontal or [v]ertical (default: horizontal): ");
+            String alignment = scanner.nextLine().toLowerCase().trim();
 
             if(alignment.equals("v") || alignment.equals("vertical")) {
                 horizontal = false;
             }
-            else if(alignment.equals("h") || alignment.equals("horizontal")) {
+            else if(alignment.equals("") || alignment.equals("h") || alignment.equals("horizontal")) {
                 horizontal = true;
             }
             else {
@@ -81,6 +81,7 @@ public class Human extends Player {
 
     @Override
     public void placeShips() {
+        System.out.println(this + "'s turn to place ships...");
         for (Ship ship : getStartingShips()) {
             do {
                 System.out.println("Place " + ship + "...");
@@ -112,11 +113,6 @@ public class Human extends Player {
         } while(true);
 
         return playerIndex;
-    }
-
-    @Override
-    public void ShowCoordinates() {
-
     }
 
     @Override
