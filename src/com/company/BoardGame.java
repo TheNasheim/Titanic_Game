@@ -63,21 +63,24 @@ public class BoardGame {
     //endregion
 
     // This function is is to fill the arraylist[][] board HIT or MISS from the ships arraylist.
-    public boolean shotAtPosition(Position position) {
+    public SquareState shotAtPosition(Position position) {
+        SquareState state = SquareState.NONE;
         if(board[position.getY()][position.getX()] == SquareState.NONE) {
             for (Ship ship : ships) {
+                state = SquareState.MISS;
                 if (ship.hit(position)) {
                     board[position.getY()][position.getX()] = SquareState.HIT;
+                    if(ship.wasSunk()) {
+                        ships.remove(ship);
+                    }
+                    state = SquareState.HIT;
+                    break;
                 } else {
                     board[position.getY()][position.getX()] = SquareState.MISS;
                 }
             }
-            return true;
         }
-        else {
-            return false;
-        }
-
+        return state;
     }
 
     //region Render()
@@ -123,5 +126,13 @@ public class BoardGame {
     // this will return the amount of ships player has left.
     public int getShipsLeft(){
         return ships.size();
+    }
+    // This will return the board height Y
+    public int getYSize() {
+        return board.length -1;
+    }
+    // This will return the board Width X
+    public int getXSize() {
+        return board[0].length-1;
     }
 }

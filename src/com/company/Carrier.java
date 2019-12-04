@@ -11,17 +11,15 @@ public class Carrier extends Ship {
         super(positions);
     }
 
-    public Carrier() {}
+    public Carrier(int size) { super(size);}
 
     @Override
-    public int getSize() {
-        return 3;
+    public boolean wasSunk() {
+        if(getSize() == getHits())
+            System.out.println("You sank a " + this.toString());
+        return getSize() == getHits();
     }
 
-    @Override
-    public void wasHit() {
-
-    }
 
     @Override
     public String toString() {
