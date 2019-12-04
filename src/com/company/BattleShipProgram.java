@@ -20,7 +20,7 @@ public class BattleShipProgram {
         do {
             System.out.println("Choose Opponent");
             System.out.println("Choose 1: Player vs Player");
-            System.out.println("Choose 2: Player vs Computer [Easy]");
+            System.out.println("Choose 2: Player vs Computer [Dumb]");
             System.out.println("Choose 3: Player vs Computer [Medium]");
             System.out.println("Choose 0: To exit");
             int choices = input.nextInt();
@@ -28,29 +28,22 @@ public class BattleShipProgram {
                 case 1:
                     System.out.println("Good you choose to play with another Player");
                     players = new Player[2];
-                    players[0] = new Human("Player1", 0, new BoardGame(10, 10));
-                    players[1] = new Human("Player2", 1, new BoardGame(10, 10));
+                    players[0] = new Human("Player 1", 0, new BoardGame(10, 10));
+                    players[1] = new Human("Player 2", 1, new BoardGame(10, 10));
                     playGame();
                     break;
                 case 2:
                     System.out.println("Player vs Computer [Dumb]");
                     players = new Player[2];
-                    players[0] = new Human("Player1", 0,new BoardGame(10, 10));
-                    players[1] = new Computer("Mr.Potato", 1,new BoardGame(10, 10));
+                    players[0] = new Human("Player 1", 0, new BoardGame(10, 10));
+                    players[1] = new Computer("Mr.Potato", 1, new BoardGame(10, 10));
                     playGame();
                     break;
                 case 3:
                     System.out.println("Player vs Computer [Medium]");
                     players = new Player[2];
-                    players[0] = new Human("Player1", 0, new BoardGame(10, 10));
-                    players[1] = new Computer("Player2", 1, new BoardGame(10, 10));
-                    playGame();
-                    break;
-                case 4:
-                    System.out.println("Player vs Computer [Crasy]");
-                    players = new Player[2];
-                    players[0] = new Human("Player1",0, new BoardGame(10, 10));
-                    players[1] = new Computer("GLaDOS", 1, new BoardGame(10, 10));
+                    players[0] = new Human("Player 1", 0, new BoardGame(10, 10));
+                    players[1] = new Computer("H.A.L", 1, new BoardGame(10, 10));
                     playGame();
                     break;
                 case 0:
@@ -65,34 +58,57 @@ public class BattleShipProgram {
 
     // a method with Play
     // void = doesn`t return
-    //every player must place their ships, includes every player
-    //gameRunning is for the while loop, while it`s gameRunning is true
-    //For every player shoose oponent player
-    //Oponent player displayMap
-    //Player returns shooting position
-    //Oponent returns their hit or miss from the oponent player
-    //If the ship got hit check
+    // every player must place their ships, includes every player
+    // gameRunning is for the while loop, while it`s gameRunning is true
+    // For every player shoose oponent player
+    // Oponent player displayMap
+    // Player returns shooting position
+    // Oponent returns their hit or miss from the oponent player
+    // If the ship got hit check
     // If the oponent have no ships left, the other player won
 
     private void playGame() {
+
         for (Player player : players) {
+            System.out.println("It is " + player.getName() + " turn to place the ships.");
             player.placeShips();
         }
-        boolean gameRunning = true;
-        while (gameRunning) {
-            for(int currentPlayerIndex  = 0; currentPlayerIndex < players.length; currentPlayerIndex++){
-                System.out.println(players[currentPlayerIndex] + "'s turn...");
-                int oponent = players[currentPlayerIndex].selectOponentPlayer();
-                players[oponent].displayMap();
-                Position position = players[currentPlayerIndex].shoot();
-                boolean hit = players[oponent].shotAtPosition(position);
-                if (hit) {
+
+        while (true) {
+            for (int currentPlayerIndex = 0; currentPlayerIndex < players.length; currentPlayerIndex++) {
+                SquareState hit = SquareState.NONE;
+                int oponent = 0;
+                System.out.println("It is " + players[currentPlayerIndex].getName() + " turn to Shoot.");
+                if (players.length == 2) {
+                    if (players[currentPlayerIndex] instanceof Human) {
+                        oponent = (currentPlayerIndex == 0) ? 1 : 0;
+                    } else {
+                        oponent = players[currentPlayerIndex].selectOponentPlayer();
+                    }
+                    players[oponent].displayMap();
+                    while(hit == SquareState.NONE) {
+                        Position position = players[currentPlayerIndex].shoot();
+                        hit = players[oponent].shotAtPosition(position);
+                    }
+                } else {
+                    oponent = players[currentPlayerIndex].selectOponentPlayer();
+                    players[oponent].displayMap();
+                    Position position = players[currentPlayerIndex].shoot();
+                    hit = players[oponent].shotAtPosition(position);
+                }
+                if (hit == SquareState.HIT) {
+                    System.out.println("That was a HIT!");
                     int shipsLeft = players[oponent].getShipsLeft();
                     if (shipsLeft == 0) {
                         System.out.println("YOU WON!");
-                        gameRunning = false;
+                        return;
                     }
                 }
+                else {
+                    System.out.println("That was a miss.");
+                }
+                System.out.println("Press Enter to continue.");
+                    input.nextLine();
             }
         }
     }
