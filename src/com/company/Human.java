@@ -81,7 +81,6 @@ public class Human extends Player {
 
     @Override
     public void placeShips() {
-        System.out.println(this + "'s turn to place ships...");
         for (Ship ship : getStartingShips()) {
             do {
                 System.out.println("Place " + ship + "...");
