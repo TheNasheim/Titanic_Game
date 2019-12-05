@@ -8,7 +8,7 @@ public class Battleship extends Ship {
         super(positions);
     }
 
-    public Battleship(int size) { super(size); }
+    public Battleship() { super(5); }
 
     @Override
     public int getSize() {
