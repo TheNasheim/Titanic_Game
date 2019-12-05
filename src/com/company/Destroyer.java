@@ -7,15 +7,17 @@ public class Destroyer extends Ship {
         super(positions);
     }
 
-    public Destroyer() { super(2);}
+    public Destroyer() {}
 
     @Override
-    public boolean wasSunk() {
-        if(getSize() == getHits())
-            System.out.println("You sank a " + this.toString());
-        return getSize() == getHits();
+    public int getSize() {
+        return 2;
     }
 
+    @Override
+    public void wasHit() {
+
+    }
 
     @Override
     public String toString() {
