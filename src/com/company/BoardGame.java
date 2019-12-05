@@ -83,9 +83,11 @@ public class BoardGame {
         return state;
     }
 
+    // This will render a map of all the players ships on the map
+    // So user can see were teh ships are on the player board.
     public void renderMyMap(){
-       /* SquareState[][] myPlayerBoard = new SquareState[board.length][board[0].length];
-        for (SquareState[] squareStates : board) {
+       SquareState[][] myPlayerBoard = new SquareState[board.length][board[0].length];
+        for (SquareState[] squareStates : myPlayerBoard) {
             Arrays.fill(squareStates, SquareState.NONE);
         }
         if(ships.size() > 0){
@@ -94,7 +96,7 @@ public class BoardGame {
                 ArrayList<Position> positions = ship.getPositions();
                 for(Position position : positions){
                     System.out.println(" X:" + position.getX() + " Y:" + position.getY());
-                   // myPlayerBoard[position.getY()][position.getX()] = SquareState.HIT;
+                    myPlayerBoard[position.getY()][position.getX()] = SquareState.HIT;
                 }
             }
         }
@@ -111,7 +113,7 @@ public class BoardGame {
             }
             display += "\n";
         }
-        System.out.printf(display + "\n"); */
+        System.out.printf(display + "\n");
     }
 
 
