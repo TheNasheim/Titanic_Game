@@ -8,7 +8,7 @@ public class Battleship extends Ship {
         super(positions);
     }
 
-    public Battleship(int size) { super(size); }
+    public Battleship(){}
 
     @Override
     public int getSize() {
@@ -16,13 +16,9 @@ public class Battleship extends Ship {
     }
 
     @Override
-    public boolean wasSunk() {
-        if(getSize() == getHits())
-            System.out.println("You sank a " + this.toString());
-        return getSize() == getHits();
+    public void wasHit() {
+
     }
-
-
 
     @Override
     public String toString() {

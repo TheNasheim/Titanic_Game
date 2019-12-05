@@ -8,15 +8,17 @@ public class Cruiser extends Ship {
         super(positions);
     }
 
-    public Cruiser(int size) { super(size);}
+    public Cruiser() {}
 
     @Override
-    public boolean wasSunk() {
-        if(getSize() == getHits())
-            System.out.println("You sank a " + this.toString());
-        return getSize() == getHits();
+    public int getSize() {
+        return 4;
     }
 
+    @Override
+    public void wasHit() {
+
+    }
 
     @Override
     public String toString() {

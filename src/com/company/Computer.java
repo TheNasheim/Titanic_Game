@@ -123,4 +123,8 @@ public class Computer extends Player {
         return getMap().getShipsLeft();
     }
 
+    @Override
+    public String toString() {
+        return "Player " + getName();
+    }
 }

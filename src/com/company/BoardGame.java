@@ -11,7 +11,7 @@ public class BoardGame {
     // This constructor needs two int values to build up a new boardgame with the desired size.
     public BoardGame(int x, int y){
         ships = new ArrayList<>();
-        board = new SquareState[y][x];
+        board = new SquareState[x][y];
         for (SquareState[] squareStates : board) {
             Arrays.fill(squareStates, SquareState.NONE);
         }
@@ -24,17 +24,12 @@ public class BoardGame {
     public boolean addShip(Ship ship){
         boolean fits = true;
         for(Position position : ship.getPositions()) {
-            if (position.getX() >= board[0].length || position.getY() >= board.length) {
-                fits = false;
-                break;
-            }
-            else if (position.getX() < 0 || position.getY() < 0){
+            if (position.getX() >= board[0].length || position.getY() >= board.length)
                 fits =  false;
-            break;
-            }
+            if (position.getX() < 0 || position.getY() < 0)
+                fits =  false;
             else if (shipCollide(position)) {
                 fits = false;
-                break;
             } else {
                 fits = true;
             }
@@ -63,24 +58,21 @@ public class BoardGame {
     //endregion
 
     // This function is is to fill the arraylist[][] board HIT or MISS from the ships arraylist.
-    public SquareState shotAtPosition(Position position) {
-        SquareState state = SquareState.NONE;
+    public boolean shotAtPosition(Position position) {
         if(board[position.getY()][position.getX()] == SquareState.NONE) {
             for (Ship ship : ships) {
-                state = SquareState.MISS;
                 if (ship.hit(position)) {
                     board[position.getY()][position.getX()] = SquareState.HIT;
-                    if(ship.wasSunk()) {
-                        ships.remove(ship);
-                    }
-                    state = SquareState.HIT;
-                    break;
                 } else {
                     board[position.getY()][position.getX()] = SquareState.MISS;
                 }
             }
+            return true;
         }
-        return state;
+        else {
+            return false;
+        }
+
     }
 
     public void renderMyMap(){
@@ -155,7 +147,6 @@ public class BoardGame {
 
     //endregion
 
-    // this will return the amount of ships player has left.
     public int getShipsLeft(){
         return ships.size();
     }
