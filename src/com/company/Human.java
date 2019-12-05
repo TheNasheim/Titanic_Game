@@ -1,7 +1,6 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Human extends Player {
@@ -83,6 +82,7 @@ public class Human extends Player {
     public void placeShips() {
         for (Ship ship : getStartingShips()) {
             do {
+                displayMyMap();
                 System.out.println("Place " + ship + "...");
                 ship.setPositions(getCoordinates(ship.getSize()));
                 if (getMap().addShip(ship)) {

@@ -29,6 +29,11 @@ public abstract class Player {
         map.render();
     }
 
+    public void displayMyMap() {
+        map.renderMyMap();
+    }
+
+
     public int getId() {
         return id;
     }
