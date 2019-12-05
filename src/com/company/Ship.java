@@ -10,22 +10,14 @@ public abstract class Ship {
 
     public Ship(ArrayList<Position> positions) {      // en konstruktor som tar emot ArrayList position
         this.positions = positions;
+
     }
 
-    public Ship(int size) {
+    public Ship() {
         positions = new ArrayList<Position>();
-        this.size = size;
     }
 
-
-    public int getSize(){
-        return size;
-    }
-
-    public int getHits() {
-        return hits;
-    }
-
+    public abstract int getSize();
 
     public void setPositions(ArrayList<Position> positions) {
         this.positions = positions;
@@ -34,7 +26,6 @@ public abstract class Ship {
     public boolean hit(Position attackPosition) {        // tar emot ett argument, positionen som spelaren skjutit mot
         for (Position position : positions) {           // ett skepp kan bestå av flera rutor på spelplanen, vi går igenom positionerna i skeppet
             if (attackPosition.getX() == position.getX() && attackPosition.getY() == position.getY()) {
-                hits++;
                 return true;
 
                 // Jämfört om attackpositionen stämmer överrens med skeppet som den andra spelaren har, då har det blivit en träff där
@@ -49,9 +40,7 @@ public abstract class Ship {
         return positions;
     }
 
-    // This is looking if it has been hit as many times size is.
-    // If so return true
-    public abstract boolean wasSunk();
+    public abstract void wasHit();                    // metod som implementeras av underklasserna
 }
 
 
