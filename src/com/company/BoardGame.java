@@ -83,6 +83,38 @@ public class BoardGame {
         return state;
     }
 
+    public void renderMyMap(){
+       /* SquareState[][] myPlayerBoard = new SquareState[board.length][board[0].length];
+        for (SquareState[] squareStates : board) {
+            Arrays.fill(squareStates, SquareState.NONE);
+        }
+        if(ships.size() > 0){
+            System.out.println("Ive found " + ships.size() + "ship");
+            for(Ship ship : ships){
+                ArrayList<Position> positions = ship.getPositions();
+                for(Position position : positions){
+                    System.out.println(" X:" + position.getX() + " Y:" + position.getY());
+                   // myPlayerBoard[position.getY()][position.getX()] = SquareState.HIT;
+                }
+            }
+        }
+        String display = "";
+        display += "[\\]";
+        for (int col = 0; col < myPlayerBoard[0].length; col++){
+            display += "[" + (col + 1) + "]";
+        }
+        display += "\n";
+        for (int row = 0; row < myPlayerBoard.length; row++){
+            display += "[" + (row + 1) + "]";
+            for (int col = 0; col < myPlayerBoard[row].length; col++){
+                display += squareDesign(myPlayerBoard[row][col]);
+            }
+            display += "\n";
+        }
+        System.out.printf(display + "\n"); */
+    }
+
+
     //region Render()
     // This Function renders out the Board with hit miss and empty to console.
     // It also adds the numbers at the column header and row header.
@@ -133,6 +165,6 @@ public class BoardGame {
     }
     // This will return the board Width X
     public int getXSize() {
-        return board[0].length-1;
+        return board[0].length - 1;
     }
 }
