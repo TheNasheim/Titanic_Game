@@ -7,7 +7,7 @@ public class Destroyer extends Ship {
         super(positions);
     }
 
-    public Destroyer() { super(2);}
+    public Destroyer(int size) { super(size);}
 
     @Override
     public boolean wasSunk() {

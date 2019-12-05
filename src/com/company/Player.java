@@ -29,6 +29,11 @@ public abstract class Player {
         map.render();
     }
 
+    public void displayMyMap() {
+        map.renderMyMap();
+    }
+
+
     public int getId() {
         return id;
     }
@@ -39,12 +44,12 @@ public abstract class Player {
 
     Ship[] getStartingShips() {
         return new Ship[]{
-                new Submarine(),
-                new Destroyer(),
-                new Cruiser(),
-                new Battleship(),
-                new Carrier(),
-                new Carrier()
+                new Submarine(3),
+                new Destroyer(2),
+                new Cruiser(4),
+                new Battleship(5),
+                new Carrier(3),
+                new Carrier(3)
         };
     }
     public abstract int getShipsLeft();

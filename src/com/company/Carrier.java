@@ -11,7 +11,7 @@ public class Carrier extends Ship {
         super(positions);
     }
 
-    public Carrier() { super(3);}
+    public Carrier(int size) { super(size);}
 
     @Override
     public boolean wasSunk() {

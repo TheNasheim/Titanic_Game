@@ -8,7 +8,7 @@ public class Cruiser extends Ship {
         super(positions);
     }
 
-    public Cruiser() { super(4);}
+    public Cruiser(int size) { super(size);}
 
     @Override
     public boolean wasSunk() {
