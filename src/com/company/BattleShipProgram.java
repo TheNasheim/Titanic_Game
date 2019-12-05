@@ -56,17 +56,39 @@ public class BattleShipProgram {
         System.out.println("Bye-bye");
     }
 
-    // a method with Play
-    // void = doesn`t return
-    // every player must place their ships, includes every player
-    // gameRunning is for the while loop, while it`s gameRunning is true
-    // For every player shoose oponent player
-    // Oponent player displayMap
-    // Player returns shooting position
-    // Oponent returns their hit or miss from the oponent player
-    // If the ship got hit check
-    // If the oponent have no ships left, the other player won
 
+    // playGame() is the start of the vs game were you start at placing your ships.
+    // and after that first player starts to shoot at the opponent players map.
+    // This will stop its loop when one player has 0 ships left.
+
+    // 1. First for loop is for every player in players array.
+    // In loop first is a text to tell player who's turn it is to place out the ships on the map.
+    // 1.2. The while loop will run until somewhere tells it to return from the loop
+    // 1.3. Inside the loop there is a for loop for every player
+    // Squarestate hit is set to NONE from a Enum and opponent is set to 0;
+    // 1.4. prints out who's turn it is to shoot
+    // 1.5 if there is 2 players
+    // 1.5.2 and if the player is a Human Class.
+    // 1.5.2 then checks what the current player array nr is and sets to opposite 1 > 0 or 0 > 1.
+    // 1.5.4 else if it is not a Human Class then start function selectOponentPlayer(). It is so computer can also select its own map by mistake.
+    // 1.6. The player will be shown the opponents Map
+    // 1.7. A while loop will check if hit has SquareState.NONE
+    // 1.7.1 returns Position from what X&Y player want to shoot at.
+    // 1.7.2 returns a SquareState if it was a hit or miss. If it returns a NONE there must have been something wrong and goes back to (1.7.)
+    // 1.8 If it is more then 2 palyers.
+    // 1.8.1 start function selectOponentPlayer() so player can select who player want's to hit
+    // 1.8.2 same as 1.6, 1.7
+    // 1.9 If hit is a HIT then
+    // 1.9.1 print out that it was a hit
+    // 1.9.2 now it will check how many ships the apponent has left
+    // 1.9.2.1 If opponent has 0 ships left
+    // 1.9.2.2 print out that player has won.
+    // 1.9.2.3 now return from the playGame() while loop
+    // 1.9.3 if it was a miss
+    // 1.9.3.1 print out that it was a miss
+    // 1.10 print out press enter to continue
+    // 1.11 waits for press enter input.
+    // 1.12 return to (1.4) and back we gooo...
     private void playGame() {
 
         for (Player player : players) {
@@ -93,8 +115,10 @@ public class BattleShipProgram {
                 } else {
                     opponent = players[currentPlayerIndex].selectOponentPlayer();
                     players[opponent].displayMap();
-                    Position position = players[currentPlayerIndex].shoot();
-                    hit = players[opponent].shotAtPosition(position);
+                    while(hit == SquareState.NONE) {
+                        Position position = players[currentPlayerIndex].shoot();
+                        hit = players[opponent].shotAtPosition(position);
+                    }
                 }
                 if (hit == SquareState.HIT) {
                     System.out.println("That was a HIT!");
