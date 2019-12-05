@@ -71,8 +71,10 @@ public class Computer extends Player {
     @Override
     public int selectOponentPlayer() {
         if(getName().equals("Mr.Potato")) {
-            if(Math.random() > 0.8)
+            if(Math.random() > 0.8) {
+                System.out.println("Oh no.. Im shooting at myself.");
                 return 1;
+            }
             else
                 return 0;
         }
@@ -84,7 +86,9 @@ public class Computer extends Player {
     @Override
     public Position shoot() {
 
-        Position position = new Position((int)Math.round(Math.random()) * getMap().getXSize(),(int)Math.round(Math.random()) * getMap().getYSize());/*
+        Position position = new Position((int)(Math.round((Math.random() * getMap().getXSize()))),(int)Math.round(Math.random() * getMap().getYSize()));
+        System.out.println("Im shooting at X:" + (position.getX()+1) + " & Y:" + (position.getY()+1));
+        /*
         //Hard *Crazy
         if(getName().equals("GLaDOS")) {
             int x = (int)Math.round(Math.random()) * getMap().getXSize();

@@ -77,28 +77,28 @@ public class BattleShipProgram {
         while (true) {
             for (int currentPlayerIndex = 0; currentPlayerIndex < players.length; currentPlayerIndex++) {
                 SquareState hit = SquareState.NONE;
-                int oponent = 0;
+                int opponent = 0;
                 System.out.println("It is " + players[currentPlayerIndex].getName() + " turn to Shoot.");
                 if (players.length == 2) {
                     if (players[currentPlayerIndex] instanceof Human) {
-                        oponent = (currentPlayerIndex == 0) ? 1 : 0;
+                        opponent = (currentPlayerIndex == 0) ? 1 : 0;
                     } else {
-                        oponent = players[currentPlayerIndex].selectOponentPlayer();
+                        opponent = players[currentPlayerIndex].selectOponentPlayer();
                     }
-                    players[oponent].displayMap();
+                    players[opponent].displayMap();
                     while(hit == SquareState.NONE) {
                         Position position = players[currentPlayerIndex].shoot();
-                        hit = players[oponent].shotAtPosition(position);
+                        hit = players[opponent].shotAtPosition(position);
                     }
                 } else {
-                    oponent = players[currentPlayerIndex].selectOponentPlayer();
-                    players[oponent].displayMap();
+                    opponent = players[currentPlayerIndex].selectOponentPlayer();
+                    players[opponent].displayMap();
                     Position position = players[currentPlayerIndex].shoot();
-                    hit = players[oponent].shotAtPosition(position);
+                    hit = players[opponent].shotAtPosition(position);
                 }
                 if (hit == SquareState.HIT) {
                     System.out.println("That was a HIT!");
-                    int shipsLeft = players[oponent].getShipsLeft();
+                    int shipsLeft = players[opponent].getShipsLeft();
                     if (shipsLeft == 0) {
                         System.out.println("YOU WON!");
                         return;
