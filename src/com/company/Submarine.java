@@ -13,18 +13,20 @@ public class Submarine extends Ship {
         // send up ArrayList to super
     }
 
-    public Submarine() {}
+    public Submarine(int size) { super(size);}
 
-    @Override
+    /*@Override
     public int getSize() {
         return 3;
-    }
+    }*/
 
     @Override
-    public void wasHit() {
-        //change behavior that exist in the superclass 
-
+    public boolean wasSunk() {
+        if(getSize() == getHits())
+            System.out.println("You sank a " + this.toString());
+        return getSize() == getHits();
     }
+
 
     @Override
     public String toString() {

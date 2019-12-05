@@ -1,7 +1,6 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Human extends Player {
@@ -83,6 +82,7 @@ public class Human extends Player {
     public void placeShips() {
         for (Ship ship : getStartingShips()) {
             do {
+                displayMyMap();
                 System.out.println("Place " + ship + "...");
                 ship.setPositions(getCoordinates(ship.getSize()));
                 if (getMap().addShip(ship)) {
@@ -103,11 +103,6 @@ public class Human extends Player {
             System.out.print("Enter index number of player to attack: ");
             try {
                  playerIndex = Integer.parseInt(scanner.nextLine());
-
-                 if(playerIndex == getId()) {
-                     System.out.println("ERROR: You can't attack yourself. Try again!");
-                     continue;
-                 }
             }
             catch(NumberFormatException e) {
                 System.out.println("ERROR: Must be an integer. Try again!");
@@ -135,10 +130,5 @@ public class Human extends Player {
     @Override
     public int getShipsLeft() {
         return getMap().getShipsLeft();
-    }
-
-    @Override
-    public String toString() {
-        return "Player " + getName();
     }
 }
