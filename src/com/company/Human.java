@@ -7,8 +7,8 @@ import java.util.Scanner;
 public class Human extends Player {
     private BoardGame boardGame;
 
-    public Human(String name, BoardGame map) {
-        super(name, map);
+    public Human(String name, int id, BoardGame map) {
+        super(name, id, map);
     }
 
     private ArrayList<Position> getCoordinates(int shipSize) {
@@ -19,13 +19,13 @@ public class Human extends Player {
 
         // horizontal or vertical
         while(true) {
-            System.out.print("[h]orizontal or [v]ertical: ");
-            String alignment = scanner.nextLine().toLowerCase();
+            System.out.print("[h]orizontal or [v]ertical (default: horizontal): ");
+            String alignment = scanner.nextLine().toLowerCase().trim();
 
             if(alignment.equals("v") || alignment.equals("vertical")) {
                 horizontal = false;
             }
-            else if(alignment.equals("h") || alignment.equals("horizontal")) {
+            else if(alignment.equals("") || alignment.equals("h") || alignment.equals("horizontal")) {
                 horizontal = true;
             }
             else {
@@ -83,7 +83,7 @@ public class Human extends Player {
     public void placeShips() {
         for (Ship ship : getStartingShips()) {
             do {
-                System.out.println("Place" + ship + "...");
+                System.out.println("Place " + ship + "...");
                 ship.setPositions(getCoordinates(ship.getSize()));
                 if (getMap().addShip(ship)) {
                     break; // ship was added successfully
@@ -96,12 +96,22 @@ public class Human extends Player {
 
     @Override
     public int selectOponentPlayer() {
-        return 0;
-    }
+        Scanner scanner = new Scanner(System.in);
+        int playerIndex;
 
-    @Override
-    public void ShowCoordinates() {
+        do {
+            System.out.print("Enter index number of player to attack: ");
+            try {
+                 playerIndex = Integer.parseInt(scanner.nextLine());
+            }
+            catch(NumberFormatException e) {
+                System.out.println("ERROR: Must be an integer. Try again!");
+                continue;
+            }
+            break;
+        } while(true);
 
+        return playerIndex;
     }
 
     @Override
@@ -112,11 +122,13 @@ public class Human extends Player {
         System.out.println("Enter coordinate X & Y to shoot at");
         toX = input.nextInt();
         toY = input.nextInt();
+        toX--;
+        toY--;
         return new Position(toX,toY);
     }
 
     @Override
     public int getShipsLeft() {
-        return 0;
+        return getMap().getShipsLeft();
     }
 }
