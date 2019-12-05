@@ -84,7 +84,7 @@ public class BoardGame {
     }
 
     // This will render a map of all the players ships on the map
-    // So user can see were teh ships are on the player board.
+    // So user can see were the ships are on the player board.
     public void renderMyMap(){
        SquareState[][] myPlayerBoard = new SquareState[board.length][board[0].length];
         for (SquareState[] squareStates : myPlayerBoard) {
@@ -95,7 +95,6 @@ public class BoardGame {
             for(Ship ship : ships){
                 ArrayList<Position> positions = ship.getPositions();
                 for(Position position : positions){
-                    System.out.println(" X:" + position.getX() + " Y:" + position.getY());
                     myPlayerBoard[position.getY()][position.getX()] = SquareState.HIT;
                 }
             }

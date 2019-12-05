@@ -87,7 +87,7 @@ public class Computer extends Player {
     public Position shoot() {
 
         Position position = new Position((int)(Math.round((Math.random() * getMap().getXSize()))),(int)Math.round(Math.random() * getMap().getYSize()));
-        System.out.println("Im shooting at X:" + position.getX()+1 + " & Y:" + position.getY()+1);
+        System.out.println("Im shooting at X:" + (position.getX()+1) + " & Y:" + (position.getY()+1));
         /*
         //Hard *Crazy
         if(getName().equals("GLaDOS")) {
