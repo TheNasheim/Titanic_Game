@@ -17,10 +17,6 @@ public abstract class Player {
 
     public abstract Position shoot();
 
-    public String getName() {
-        return name;
-    }
-
     public BoardGame getMap() {
         return map;
     }
