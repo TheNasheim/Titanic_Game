@@ -103,11 +103,6 @@ public class Human extends Player {
             System.out.print("Enter index number of player to attack: ");
             try {
                  playerIndex = Integer.parseInt(scanner.nextLine());
-
-                 if(playerIndex == getId()) {
-                     System.out.println("ERROR: You can't attack yourself. Try again!");
-                     continue;
-                 }
             }
             catch(NumberFormatException e) {
                 System.out.println("ERROR: Must be an integer. Try again!");
@@ -135,10 +130,5 @@ public class Human extends Player {
     @Override
     public int getShipsLeft() {
         return getMap().getShipsLeft();
-    }
-
-    @Override
-    public String toString() {
-        return "Player " + getName();
     }
 }
