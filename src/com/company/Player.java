@@ -3,17 +3,17 @@ package com.company;
 public abstract class Player {
     private String name;
     private BoardGame map;
+    private int id;
 
-    public Player(String name, BoardGame map) {
+    public Player(String name, int id, BoardGame map) {
         this.name = name;
+        this.id = id;
         this.map = map;
     }
 
     public abstract void placeShips();
 
     public abstract int selectOponentPlayer();
-
-    public abstract void ShowCoordinates();
 
     public abstract Position shoot();
 
@@ -25,11 +25,19 @@ public abstract class Player {
         return map;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void displayMap() {
         map.render();
     }
 
-    public boolean shotAtPosition(Position position) {
+    public int getId() {
+        return id;
+    }
+
+    public SquareState shotAtPosition(Position position) {
         return map.shotAtPosition(position);
     }
 
