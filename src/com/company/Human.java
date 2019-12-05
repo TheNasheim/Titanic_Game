@@ -119,4 +119,9 @@ public class Human extends Player {
     public int getShipsLeft() {
         return 0;
     }
+
+    @Override
+    public String toString() {
+        return "Player " + getName();
+    }
 }
