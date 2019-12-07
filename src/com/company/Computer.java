@@ -69,7 +69,7 @@ public class Computer extends Player {
 
     // This is just so Mr.Potato can hav a 20% chance to hit his own map by mistake. ;)
     @Override
-    public int selectOponentPlayer() {
+    public int selectOpponentPlayer() {
         if(getName().equals("Mr.Potato")) {
             if(Math.random() > 0.8) {
                 System.out.println("Oh no.. Im shooting at myself.");
@@ -88,29 +88,7 @@ public class Computer extends Player {
 
         Position position = new Position((int)(Math.round((Math.random() * getMap().getXSize()))),(int)Math.round(Math.random() * getMap().getYSize()));
         System.out.println("Im shooting at X:" + (position.getX()+1) + " & Y:" + (position.getY()+1));
-        /*
-        //Hard *Crazy
-        if(getName().equals("GLaDOS")) {
-            int x = (int)Math.round(Math.random()) * getMap().getXSize();
-            int y = 0;
-            if (x % 2 == 0)
-                //  start with 0
-
-                System.out.println("The number is even.");
-            else
-                // start with 1
-                System.out.println("The number is odd.");
-
-        }
-        //Half smart?
-        else if(getName().equals("H.A.L")){
-
-        }
-        //dumb
-        else {
-
-        }
-*/
+        // TODO: add a smarter computer
         return position;
     }
 
