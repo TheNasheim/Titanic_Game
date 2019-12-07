@@ -66,7 +66,7 @@ public class BoardGame {
     public SquareState shotAtPosition(Position position) {
         SquareState state = SquareState.NONE;
         if(position.getY() <= board.length || position.getX() <= board[0].length)  {
-            if(position.getY() > 0 || position.getX() > 0) {
+            if(position.getY() >= 0 || position.getX() >= 0) {
                 if (board[position.getY()][position.getX()] == SquareState.NONE) {
                     for (Ship ship : ships) {
                         state = SquareState.MISS;
