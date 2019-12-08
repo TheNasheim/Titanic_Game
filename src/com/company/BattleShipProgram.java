@@ -105,7 +105,7 @@ public class BattleShipProgram {
                     if (players[currentPlayerIndex] instanceof Human) {
                         opponent = (currentPlayerIndex == 0) ? 1 : 0;
                     } else {
-                        opponent = players[currentPlayerIndex].selectOponentPlayer();
+                        opponent = players[currentPlayerIndex].selectOpponentPlayer();
                     }
                     players[opponent].displayMap();
                     while(hit == SquareState.NONE) {
@@ -113,7 +113,7 @@ public class BattleShipProgram {
                         hit = players[opponent].shotAtPosition(position);
                     }
                 } else {
-                    opponent = players[currentPlayerIndex].selectOponentPlayer();
+                    opponent = players[currentPlayerIndex].selectOpponentPlayer();
                     players[opponent].displayMap();
                     while(hit == SquareState.NONE) {
                         Position position = players[currentPlayerIndex].shoot();

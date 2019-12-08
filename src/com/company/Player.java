@@ -13,7 +13,7 @@ public abstract class Player {
 
     public abstract void placeShips();
 
-    public abstract int selectOponentPlayer();
+    public abstract int selectOpponentPlayer();
 
     public abstract Position shoot();
 
