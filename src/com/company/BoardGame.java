@@ -65,19 +65,24 @@ public class BoardGame {
     // This function is is to fill the arraylist[][] board HIT or MISS from the ships arraylist.
     public SquareState shotAtPosition(Position position) {
         SquareState state = SquareState.NONE;
-        if(board[position.getY()][position.getX()] == SquareState.NONE) {
-            for (Ship ship : ships) {
-                state = SquareState.MISS;
-                if (ship.hit(position)) {
-                    board[position.getY()][position.getX()] = SquareState.HIT;
-                    if(ship.wasSunk()) {
-                        ships.remove(ship);
+        if(position.getY() <= board.length || position.getX() <= board[0].length)  {
+            if(position.getY() >= 0 || position.getX() >= 0) {
+                if (board[position.getY()][position.getX()] == SquareState.NONE) {
+                    for (Ship ship : ships) {
+                        state = SquareState.MISS;
+                        if (ship.hit(position)) {
+                            board[position.getY()][position.getX()] = SquareState.HIT;
+                            if (ship.wasSunk()) {
+                                ships.remove(ship);
+                            }
+                            state = SquareState.HIT;
+                            break;
+                        } else {
+                            board[position.getY()][position.getX()] = SquareState.MISS;
+                        }
                     }
-                    state = SquareState.HIT;
-                    break;
-                } else {
-                    board[position.getY()][position.getX()] = SquareState.MISS;
                 }
+
             }
         }
         return state;
