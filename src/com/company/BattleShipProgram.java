@@ -9,42 +9,84 @@ public class BattleShipProgram {
     private Scanner input = new Scanner(System.in);
     private boolean quit = true;
     private Player[] players;
+    private Position mapSize = new Position(10, 10);
 
 
     public BattleShipProgram() {
         mainMenuSelection();
     }
 
+    //Here is a method, MenuSetup
+    //You can choose menu selections, size of map or how many ships you would like to have
+    //Used Scanner to read the text in
+    //while do loop
+    //switch menu
+    public void MenuSetup() {
+        do {
+            System.out.println("Setup menu");
+            System.out.println("Choose 1: Size of map");
+            System.out.println("Enter choice");
+            //System.out.println("Choose 2: How many ships");
+            int choice = input.nextInt();
+            switch (choice) {
+                case 1:
+                    int x;
+                    int y;
+                    while(true) {
+                        System.out.println("Write x");
+                        x = input.nextInt();
+                        System.out.println("Write y");
+                        y = input.nextInt();
+                        if (x < 5 || y < 5 || x > 25 || y > 25) {
+                            System.out.println("---ERROR---\nMust be between 5 and 25");
+                            continue;
+                        }
+                        break;
+                    }
+                    mapSize = new Position(x, y);
+                    quit = false;
+                    break;
+                default:
+            }
+        }while(quit);
+    }
+
     public void mainMenuSelection() {
 
         do {
+            //System.out.println("Battleship");
             System.out.println("Choose Opponent");
             System.out.println("Choose 1: Player vs Player");
             System.out.println("Choose 2: Player vs Computer [Dumb]");
             System.out.println("Choose 3: Player vs Computer [Medium]");
+            System.out.println("Choose 4: Enter Setup Menu");
             System.out.println("Choose 0: To exit");
             int choices = input.nextInt();
             switch (choices) {
                 case 1:
                     System.out.println("Good you choose to play with another Player");
                     players = new Player[2];
-                    players[0] = new Human("Player 1", 0, new BoardGame(10, 10));
-                    players[1] = new Human("Player 2", 1, new BoardGame(10, 10));
+                    players[0] = new Human("Player 1", 0, new BoardGame(mapSize.getX(),mapSize.getY()));
+                    players[1] = new Human("Player 2", 1, new BoardGame(mapSize.getX(),mapSize.getY()));
                     playGame();
                     break;
                 case 2:
                     System.out.println("Player vs Computer [Dumb]");
                     players = new Player[2];
-                    players[0] = new Human("Player 1", 0, new BoardGame(10, 10));
-                    players[1] = new Computer("Mr.Potato", 1, new BoardGame(10, 10));
+                    players[0] = new Human("Player 1", 0, new BoardGame(mapSize.getX(),mapSize.getY()));
+                    players[1] = new Computer("Mr.Potato", 1, new BoardGame(mapSize.getX(),mapSize.getY()));
                     playGame();
                     break;
                 case 3:
                     System.out.println("Player vs Computer [Medium]");
                     players = new Player[2];
-                    players[0] = new Human("Player 1", 0, new BoardGame(10, 10));
-                    players[1] = new Computer("H.A.L", 1, new BoardGame(10, 10));
+                    players[0] = new Human("Player 1", 0, new BoardGame(mapSize.getX(),mapSize.getY()));
+                    players[1] = new Computer("H.A.L", 1, new BoardGame(mapSize.getX(),mapSize.getY()));
                     playGame();
+                    break;
+                case 4:
+                    MenuSetup();
+                    quit=true;
                     break;
                 case 0:
                     quit = false;

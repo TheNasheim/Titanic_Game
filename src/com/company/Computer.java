@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class Computer extends Player {
     //private Position lastPosition;
-    int xSize;
-    int ySize;
+    private int xSize;
+    private int ySize;
     public Computer(String name, int id, BoardGame map){
         super(name, id, map);
     }
