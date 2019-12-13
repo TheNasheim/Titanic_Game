@@ -95,7 +95,7 @@ public class Human extends Player {
     }
 
     @Override
-    public int selectOponentPlayer() {
+    public int selectOpponentPlayer() {
         Scanner scanner = new Scanner(System.in);
         int playerIndex;
 
