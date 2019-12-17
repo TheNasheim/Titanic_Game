@@ -25,6 +25,7 @@ public class BattleShipProgram {
         do {
             System.out.println("Setup menu");
             System.out.println("Choose 1: Size of map");
+            System.out.println("Choose 0: Exit to main menu");
             System.out.println("Enter choice");
             //System.out.println("Choose 2: How many ships");
             int choice = input.nextInt();
@@ -44,6 +45,9 @@ public class BattleShipProgram {
                         break;
                     }
                     mapSize = new Position(x, y);
+                    quit = false;
+                    break;
+                case 0:
                     quit = false;
                     break;
                 default:
